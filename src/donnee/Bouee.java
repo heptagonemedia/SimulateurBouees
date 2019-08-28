@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Bouee {
 	private Integer numero;
+	private Integer no_seq;
 	private String description;
 	private Long miseEnFonction;
 	private Double longitude;
@@ -30,6 +31,7 @@ public class Bouee {
 		this.numero = numero;
 		this.description = description;
 		miseEnFonction = new Date().getTime();
+		no_seq = 0;
 		
 		listePointDonnee = new ArrayList<PointDonnee>();
 		
@@ -66,6 +68,7 @@ public class Bouee {
 		p.setDebit(valeursInitiales.getDebit() - 1 + (generateurDeHasard.nextFloat() * 2));
 		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
+		p.setNo_seq(++no_seq);
 		
 		return p;
 	}

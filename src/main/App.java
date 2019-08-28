@@ -1,7 +1,9 @@
 package main;
 
+import controle.ControlleurPrincipal;
 import donnee.PointDonnee;
 import modele.Simulateur;
+import presentation.AffichageConsole;
 
 public class App {
 
@@ -20,18 +22,15 @@ public class App {
 		}
 		*/
 		
-		Simulateur sim = new Simulateur();
-		try {
-			Thread.sleep(4500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ControlleurPrincipal controleur = new ControlleurPrincipal();
 		
-		for(PointDonnee p : sim.lireDonnees()) {
-			System.out.println(p.getId_bouee() + ": " + p.getMoment() + ": " + p.getSalinite() + ": " + p.getTemperature() + ": " + p.getDebit());
-		}
+		controleur.attendre(6500);
 		
+		controleur.afficherConsole();
+		
+		controleur.attendre(6500);
+		
+		controleur.afficherConsole();
 	}
 
 }

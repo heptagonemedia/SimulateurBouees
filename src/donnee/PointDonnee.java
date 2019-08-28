@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class PointDonnee {
 	private Integer id_bouee;
+	private Integer no_seq;
 	private Float temperature;
 	private Float salinite;
 	private Float debit;
@@ -19,6 +20,14 @@ public class PointDonnee {
 		this.id_bouee = id_bouee;
 	}
 	
+	public Integer getNo_seq() {
+		return no_seq;
+	}
+
+	public void setNo_seq(Integer no_seq) {
+		this.no_seq = no_seq;
+	}
+
 	public float getTemperature() {
 		return temperature;
 	}

@@ -19,7 +19,7 @@ public class Simulateur {
 	private ArrayList<Bouee> creerBouees(Integer nbrBouees) {
 		ArrayList<Bouee> listeBouees = new ArrayList<Bouee>();
 		Bouee boueeTemporaire;
-		for(int i = 1; i <= 50; i++) {
+		for(int i = 1; i <= nbrBouees; i++) {
 			boueeTemporaire = new Bouee(i, "Bouee test no. "+i);
 			listeBouees.add(boueeTemporaire);
 		}
