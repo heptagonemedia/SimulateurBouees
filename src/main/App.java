@@ -10,9 +10,6 @@ public class App {
 	public static void main(String[] args) {
 		/*
 		long time1 = new Date().getTime();
-
-		
-		
 		
 		long time = new Date().getTime() - time1;
 		System.out.println("Processed in " + time + "ms.");
@@ -24,6 +21,12 @@ public class App {
 		
 		ControlleurPrincipal controleur = new ControlleurPrincipal();
 		
+		
+		
+		
+		/*
+		controleur.demarrerCollecte();
+		
 		controleur.attendre(6500);
 		
 		controleur.afficherConsole();
@@ -31,6 +34,8 @@ public class App {
 		controleur.attendre(6500);
 		
 		controleur.afficherConsole();
+		
+		*/
 	}
 
 }

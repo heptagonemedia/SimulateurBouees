@@ -13,6 +13,10 @@ public class ControlleurPrincipal {
 	public ControlleurPrincipal() {
 		simulateur = new Simulateur();
 	}
+	
+	public void demarrerCollecte() {
+		simulateur.procUnParSeconde();
+	}
 
 	public void attendre(Integer ms) {
 		try {

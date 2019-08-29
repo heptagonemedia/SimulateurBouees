@@ -13,7 +13,10 @@ public class Simulateur {
 	public Simulateur() {
 		listeBouees = creerBouees(Constantes.NBR_BOUEES);
 		listePointsDonnees = new ArrayList<PointDonnee>();
-		
+	}
+	
+	public void procUnParSeconde(){
+		demarrerCollecte(1);
 	}
 	
 	private ArrayList<Bouee> creerBouees(Integer nbrBouees) {
@@ -25,6 +28,11 @@ public class Simulateur {
 		}
 		
 		return listeBouees;
+	}
+	
+	private void demarrerCollecte(Integer intervale) {
+		for(Bouee b : listeBouees) 			
+			b.demarrerCollecte(intervale);
 	}
 
 	public ArrayList<PointDonnee> lireDonnees(){

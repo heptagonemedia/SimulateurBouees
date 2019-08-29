@@ -34,11 +34,9 @@ public class Bouee {
 		no_seq = 0;
 		
 		listePointDonnee = new ArrayList<PointDonnee>();
-		
-		demarrerCollecte();
 	}
 	
-	private void demarrerCollecte() {
+	public void demarrerCollecte(Integer intervale) {
 		ScheduledExecutorService executor =
 			    Executors.newSingleThreadScheduledExecutor();
 		
@@ -49,7 +47,7 @@ public class Bouee {
 		    }
 		};
 
-		executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.SECONDS);
+		executor.scheduleAtFixedRate(periodicTask, 0, intervale, TimeUnit.SECONDS);
 	}
 	
 	public ArrayList<PointDonnee> lireDonnees(){
@@ -71,5 +69,14 @@ public class Bouee {
 		p.setNo_seq(++no_seq);
 		
 		return p;
+	}
+	
+	public ArrayList<PointDonnee> genererNombrePointDonnee(Integer nombre){
+		
+		ArrayList<PointDonnee> listePointDonneeLocale = new ArrayList<PointDonnee>();
+		for(int i = 0 ; i < nombre ; i++) {
+			listePointDonneeLocale.add(this.genererPointDonnee());
+		}
+		return listePointDonneeLocale;
 	}
 }
