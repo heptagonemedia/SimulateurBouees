@@ -1,6 +1,7 @@
 package donnee;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.Stack;
@@ -71,11 +72,29 @@ public class Bouee {
 		return p;
 	}
 	
-	public ArrayList<PointDonnee> genererNombrePointDonnee(Integer nombre){
+	private PointDonnee genererPointDonnee(Date moment) {
+		PointDonnee p = new PointDonnee();
 		
+		p.setId_bouee(numero);
+		p.setMoment(moment.getTime());
+		p.setTemperature(valeursInitiales.getTemperature() - 10 + (generateurDeHasard.nextFloat()*10));
+		p.setSalinite(valeursInitiales.getSalinite() - 5 + (generateurDeHasard.nextFloat() * 5));
+		p.setDebit(valeursInitiales.getDebit() - 1 + (generateurDeHasard.nextFloat() * 2));
+		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
+		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
+		p.setNo_seq(++no_seq);
+		
+		return p;
+	}
+	
+	
+	public ArrayList<PointDonnee> genererNombrePointDonnee(Integer nombre){
+		Calendar cal = Calendar.getInstance();
+
 		ArrayList<PointDonnee> listePointDonneeLocale = new ArrayList<PointDonnee>();
 		for(int i = 0 ; i < nombre ; i++) {
-			listePointDonneeLocale.add(this.genererPointDonnee());
+			cal.add(Calendar.SECOND, 1);
+			listePointDonneeLocale.add(this.genererPointDonnee(cal.getTime()));
 		}
 		return listePointDonneeLocale;
 	}
