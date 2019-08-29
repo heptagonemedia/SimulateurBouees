@@ -23,7 +23,7 @@ public class App {
 		long time1 = new Date().getTime();
 		
 		
-		controleur.genererNombrePoints(5000);
+		controleur.genererNombrePoints(500);
 		
 		long time = new Date().getTime() - time1;
 		System.out.println("Processed in " + time + "ms.");
