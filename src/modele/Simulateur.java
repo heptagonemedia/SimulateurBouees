@@ -19,6 +19,13 @@ public class Simulateur {
 		demarrerCollecte(1);
 	}
 	
+	public ArrayList<PointDonnee> procGenererPoints(Integer nombre) {
+		ArrayList<PointDonnee> listePointsDonneesLocale = new ArrayList<PointDonnee>();
+		for(Bouee b : listeBouees) 
+			listePointsDonneesLocale.addAll(b.genererNombrePointDonnee(nombre));
+		return listePointsDonneesLocale;
+	}
+	
 	private ArrayList<Bouee> creerBouees(Integer nbrBouees) {
 		ArrayList<Bouee> listeBouees = new ArrayList<Bouee>();
 		Bouee boueeTemporaire;

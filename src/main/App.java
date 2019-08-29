@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Date;
+
 import controle.ControlleurPrincipal;
 import donnee.PointDonnee;
 import modele.Simulateur;
@@ -8,12 +10,9 @@ import presentation.AffichageConsole;
 public class App {
 
 	public static void main(String[] args) {
+		
+		
 		/*
-		long time1 = new Date().getTime();
-		
-		long time = new Date().getTime() - time1;
-		System.out.println("Processed in " + time + "ms.");
-		
 		for(PointDonnee p : listePointsDonnees) {
 			System.out.println(p.getId_bouee() + ": " + p.getMoment() + ": " + p.getSalinite() + ": " + p.getTemperature() + ": " + p.getDebit());
 		}
@@ -21,7 +20,13 @@ public class App {
 		
 		ControlleurPrincipal controleur = new ControlleurPrincipal();
 		
+		long time1 = new Date().getTime();
 		
+		
+		controleur.genererNombrePoints(5000);
+		
+		long time = new Date().getTime() - time1;
+		System.out.println("Processed in " + time + "ms.");
 		
 		
 		/*

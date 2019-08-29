@@ -6,6 +6,7 @@ import donnee.Bouee;
 import donnee.Constantes;
 import modele.Simulateur;
 import presentation.AffichageConsole;
+import presentation.SauvegardeFichier;
 
 public class ControlleurPrincipal {
 	private Simulateur simulateur;
@@ -16,6 +17,11 @@ public class ControlleurPrincipal {
 	
 	public void demarrerCollecte() {
 		simulateur.procUnParSeconde();
+	}
+	
+	public void genererNombrePoints(Integer nombre) {
+		AffichageConsole.afficher(simulateur.procGenererPoints(nombre));
+		//SauvegardeFichier.sauvegarder(simulateur.procGenererPoints(nombre));
 	}
 
 	public void attendre(Integer ms) {
