@@ -7,6 +7,7 @@ import donnee.Constantes;
 import modele.Simulateur;
 import presentation.AffichageConsole;
 import presentation.SauvegardeFichier;
+import presentation.insererBaseDonnee;
 
 public class ControlleurPrincipal {
 	private Simulateur simulateur;
@@ -21,7 +22,8 @@ public class ControlleurPrincipal {
 	
 	public void genererNombrePoints(Integer nombre) {
 		//AffichageConsole.afficher(simulateur.procGenererPoints(nombre));
-		SauvegardeFichier.sauvegarder("test", simulateur.procGenererPoints(nombre));
+		//SauvegardeFichier.sauvegarder("test", simulateur.procGenererPoints(nombre));
+		insererBaseDonnee.inserer(simulateur.procGenererPoints(nombre));
 	}
 
 	public void attendre(Integer ms) {
