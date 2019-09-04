@@ -85,7 +85,10 @@ public class Bouee {
 		
 		p.setId_bouee(numero);
 		p.setMoment(moment.getTime());
-		p.setTemperature(valeursInitiales.getTemperature() - 10 + (generateurDeHasard.nextFloat()*10));
+
+		//p.setTemperature(valeursInitiales.getTemperature() - 10 + (generateurDeHasard.nextFloat()*10));
+		p.setTemperature(generateurDeHasard.nextFloat() * ((tabTempMinMax[0][1] - tabTempMinMax[0][0]) + 1) + tabTempMinMax[0][0]);
+
 		p.setSalinite(valeursInitiales.getSalinite() - 5 + (generateurDeHasard.nextFloat() * 5));
 		p.setDebit(valeursInitiales.getDebit() - 1 + (generateurDeHasard.nextFloat() * 2));
 		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
