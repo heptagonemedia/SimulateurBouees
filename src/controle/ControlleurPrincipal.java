@@ -17,6 +17,7 @@ public class ControlleurPrincipal {
 	}
 	
 	public void demarrerCollecte() {
+		enregistrerDansLaDB();
 		simulateur.procUnParSeconde();
 	}
 	
@@ -42,7 +43,6 @@ public class ControlleurPrincipal {
 
 	public void enregistrerDansLaDB(){
 		simulateur.enregistrerBouees();
-		//simulateur.enregistrerDonnees();
 	}
 }
 

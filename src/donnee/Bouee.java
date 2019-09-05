@@ -1,5 +1,7 @@
 package donnee;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,6 +25,7 @@ public class Bouee {
 	private Random generateurDeHasard;
 
 	private float[][] tabTempMinMax;
+	private BaseDeDonnees baseDeDonnees;
 	
 	public Bouee(Integer numero, String description) {
 		generateurDeHasard = new Random();
@@ -39,6 +42,7 @@ public class Bouee {
 		listePointDonnee = new ArrayList<PointDonnee>();
 
 		tabTempMinMax = remplirTabTemp();
+		baseDeDonnees = BaseDeDonnees.getInstance();
 	}
 	
 	public void demarrerCollecte(Integer intervale) {
@@ -49,7 +53,6 @@ public class Bouee {
 		    public void run() {
 		        // Invoke method(s) to do the work
 		    	listePointDonnee.add(genererPointDonnee());
-		    	enregistrerDonneeDansLaDB();
 		    }
 		};
 
@@ -77,6 +80,8 @@ public class Bouee {
 		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setNo_seq(++no_seq);
+
+		enregistrerDonneeDansLaDB(p);
 		
 		return p;
 	}
@@ -95,6 +100,8 @@ public class Bouee {
 		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setNo_seq(++no_seq);
+
+		enregistrerDonneeDansLaDB(p);
 		
 		return p;
 	}
@@ -111,10 +118,31 @@ public class Bouee {
 		return listePointDonneeLocale;
 	}
 
-	public void enregistrerDonneeDansLaDB(){
+	public void enregistrerDonneeDansLaDB(PointDonnee p){
 
-		String queryDonnee = "INSERT INTO donnee_bouee(id, temperature, salinite, debit," +
-				"validite, date_temps, latitude, longitude, batterie) VALUES(?,?,?,?,?,?,?,?,?)";
+		String queryDonnee = "INSERT INTO donnee_bouees(id, id_bouee, temperature, salinite, debit," +
+				"valide, date_temps, latitude, longitude, batterie) VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+		try{
+			PreparedStatement requeteDonneeParametree = baseDeDonnees.getConnection().prepareStatement(queryDonnee);
+
+			requeteDonneeParametree.setInt(1, p.getNo_seq());
+			requeteDonneeParametree.setInt(2, p.getId_bouee());
+			requeteDonneeParametree.setFloat(3, p.getTemperature());
+			requeteDonneeParametree.setFloat(4, p.getSalinite());
+			requeteDonneeParametree.setFloat(5, p.getDebit());
+			requeteDonneeParametree.setBoolean(6, true);
+			java.util.Date date = new java.util.Date(p.getMoment());
+			java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+			requeteDonneeParametree.setTimestamp(7, timestamp);
+			requeteDonneeParametree.setDouble(8, p.getLatitude());
+			requeteDonneeParametree.setDouble(9, p.getLongitude());
+			requeteDonneeParametree.setInt(10, 100);
+
+			requeteDonneeParametree.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public float[][] remplirTabTemp(){
