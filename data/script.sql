@@ -7,7 +7,7 @@
 
 CREATE TABLE public.bouees
 (
-    id bigint NOT NULL DEFAULT nextval('bouees_id_seq'::regclass),
+    id bigint NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     numero integer NOT NULL,
@@ -23,7 +23,7 @@ WITH (
 TABLESPACE pg_default;
 
 ALTER TABLE public.bouees
-    OWNER to "userLambda";
+    OWNER to "postgres";
 
 -- Table: public.donnee_bouees
 
@@ -31,7 +31,7 @@ ALTER TABLE public.bouees
 
 CREATE TABLE public.donnee_bouees
 (
-    id bigint NOT NULL DEFAULT nextval('donnee_bouees_id_seq'::regclass),
+    id bigint NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     id_bouee integer NOT NULL,
@@ -55,5 +55,5 @@ WITH (
 TABLESPACE pg_default;
 
 ALTER TABLE public.donnee_bouees
-    OWNER to "userLambda";
+    OWNER to "postgres";
 
