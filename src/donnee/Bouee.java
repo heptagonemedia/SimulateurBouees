@@ -151,4 +151,68 @@ public class Bouee {
 
 		return tab;
 	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public Integer getNo_seq() {
+		return no_seq;
+	}
+
+	public void setNo_seq(Integer no_seq) {
+		this.no_seq = no_seq;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getMiseEnFonction() {
+		return miseEnFonction;
+	}
+
+	public void setMiseEnFonction(Long miseEnFonction) {
+		this.miseEnFonction = miseEnFonction;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public ValeursInitiales getValeursInitiales() {
+		return valeursInitiales;
+	}
+
+	public void setValeursInitiales(ValeursInitiales valeursInitiales) {
+		this.valeursInitiales = valeursInitiales;
+	}
+
+	public ArrayList<PointDonnee> getListePointDonnee() {
+		return listePointDonnee;
+	}
+
+	public void setListePointDonnee(ArrayList<PointDonnee> listePointDonnee) {
+		this.listePointDonnee = listePointDonnee;
+	}
 }

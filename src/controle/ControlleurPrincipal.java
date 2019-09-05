@@ -23,7 +23,8 @@ public class ControlleurPrincipal {
 	public void genererNombrePoints(Integer nombre) {
 		//AffichageConsole.afficher(simulateur.procGenererPoints(nombre));
 		//SauvegardeFichier.sauvegarder("test", simulateur.procGenererPoints(nombre));
-		insererBaseDonnee.inserer(simulateur.procGenererPoints(nombre));
+		//insererBaseDonnee.inserer(simulateur.procGenererPoints(nombre));
+		enregistrerDansLaDB();
 	}
 
 	public void attendre(Integer ms) {
@@ -37,6 +38,11 @@ public class ControlleurPrincipal {
 	public void afficherConsole() {
 		AffichageConsole.afficher(simulateur.lireDonnees());
 		
+	}
+
+	public void enregistrerDansLaDB(){
+		simulateur.enregistrerBouees();
+		//simulateur.enregistrerDonnees();
 	}
 }
 
