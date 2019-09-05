@@ -26,10 +26,10 @@ public class PointDonneeDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		String query = "INSERT INTO donnee_bouee (id_bouee, temperature, salinite, debit, date_temps, longitude, latitude) \n" +
+		String query = "INSERT INTO donnee_bouee (id_bouee, temperature, salinite, debit, date_temps, longitude, latitude, valide) \n" +
 				"VALUES (" + p.getId_bouee() + ", " + p.getTemperature() + ", " + 
-				p.getSalinite()+", " + p.getDebit() + ", " + p.getMoment() + ", " + 
-				p.getLongitude() + ", " + p.getLatitude() + ")";
+				p.getSalinite()+", " + p.getDebit() + ", NOW(), " + 
+				p.getLongitude() + ", " + p.getLatitude() + ", True)";
 		
 		
 		//System.out.println(query);
