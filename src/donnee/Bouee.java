@@ -49,6 +49,7 @@ public class Bouee {
 		    public void run() {
 		        // Invoke method(s) to do the work
 		    	listePointDonnee.add(genererPointDonnee());
+		    	enregistrerDonneeDansLaDB();
 		    }
 		};
 
@@ -108,6 +109,12 @@ public class Bouee {
 			listePointDonneeLocale.add(this.genererPointDonnee(cal.getTime()));
 		}
 		return listePointDonneeLocale;
+	}
+
+	public void enregistrerDonneeDansLaDB(){
+
+		String queryDonnee = "INSERT INTO donnee_bouee(id, temperature, salinite, debit," +
+				"validite, date_temps, latitude, longitude, batterie) VALUES(?,?,?,?,?,?,?,?,?)";
 	}
 
 	public float[][] remplirTabTemp(){
