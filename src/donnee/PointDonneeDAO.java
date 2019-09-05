@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 public class PointDonneeDAO {
 	static Connection connection;
@@ -26,10 +27,16 @@ public class PointDonneeDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		String query = "INSERT INTO donnee_bouee (id_bouee, temperature, salinite, debit, date_temps, longitude, latitude) \n" +
+		
+		java.util.Date date = new java.util.Date(p.getMoment());
+		java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+
+
+
+		String query = "INSERT INTO donnee_bouee (id_bouee, temperature, salinite, debit, date_temps, longitude, latitude, valide) \n" +
 				"VALUES (" + p.getId_bouee() + ", " + p.getTemperature() + ", " + 
-				p.getSalinite()+", " + p.getDebit() + ", " + p.getMoment() + ", " + 
-				p.getLongitude() + ", " + p.getLatitude() + ")";
+				p.getSalinite()+", " + p.getDebit() + ", '" + timestamp + "', " + 
+				p.getLongitude() + ", " + p.getLatitude() + ", True)";
 		
 		
 		//System.out.println(query);
