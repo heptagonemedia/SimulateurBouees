@@ -72,9 +72,11 @@ public class Simulateur {
 				requeteBoueeParametree.setInt(1, b.getNumero());
 				requeteBoueeParametree.setInt(2, b.getNumero());
 				requeteBoueeParametree.setString(3, b.getDescription());
-				requeteBoueeParametree.setString(4, String.valueOf(b.getMiseEnFonction()));
-				requeteBoueeParametree.setString(5, String.valueOf(b.getLatitude()));
-				requeteBoueeParametree.setString(6, String.valueOf(b.getLongitude()));
+				java.util.Date date = new java.util.Date(b.getMiseEnFonction());
+				java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+				requeteBoueeParametree.setTimestamp(4, timestamp);
+				requeteBoueeParametree.setDouble(5, b.getLatitude());
+				requeteBoueeParametree.setDouble(6, b.getLongitude());
 
 				requeteBoueeParametree.executeUpdate();
 			} catch (SQLException e) {
