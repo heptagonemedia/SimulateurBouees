@@ -10,7 +10,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
 public class Bouee {
+
 	private Integer idBouee;
 	private Integer no_seq;
 	private String description;
@@ -88,7 +90,7 @@ public class Bouee {
 
 		p.setMoment(moment.getTime());
 
-		//p.setTemperature(valeursInitiales.getTemperature() - 10 + (generateurDeHasard.nextFloat()*10));
+		p.setTemperature(valeursInitiales.getTemperature() - 10 + (generateurDeHasard.nextFloat()*10));
 		p.setTemperature(generateurDeHasard.nextFloat() * ((tabTempMinMax[0][1] - tabTempMinMax[0][0]) + 1) + tabTempMinMax[0][0]);
 
 		p.setSalinite(valeursInitiales.getSalinite() - 5 + (generateurDeHasard.nextFloat() * 5));
@@ -96,7 +98,7 @@ public class Bouee {
 		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 
-		enregistrerDonneeDansLaDB(p);
+		//enregistrerDonneeDansLaDB(p);
 		
 		return p;
 	}
