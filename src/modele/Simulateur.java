@@ -1,8 +1,5 @@
 package modele;
 
-import java.lang.reflect.Array;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -64,19 +61,19 @@ public class Simulateur {
 	public void enregistrerBouees(){
 
 		for(Bouee b : listeBouees){
-			String queryBouee = "INSERT INTO bouees(id, numero, description, date_debut, latitude, longitude) VALUES(?,?,?,?,?,?)";
+			String queryBouee = "INSERT INTO bouees(numero, description, date_debut, latitude, longitude) VALUES(?,?,?,?,?)";
 
 			try{
 				PreparedStatement requeteBoueeParametree = baseDeDonnees.getConnection().prepareStatement(queryBouee);
 
-				requeteBoueeParametree.setInt(1, b.getNumero());
-				requeteBoueeParametree.setInt(2, b.getNumero());
-				requeteBoueeParametree.setString(3, b.getDescription());
+
+				requeteBoueeParametree.setInt(1, b.getIdBouee());
+				requeteBoueeParametree.setString(2, b.getDescription());
 				java.util.Date date = new java.util.Date(b.getMiseEnFonction());
 				java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
-				requeteBoueeParametree.setTimestamp(4, timestamp);
-				requeteBoueeParametree.setDouble(5, b.getLatitude());
-				requeteBoueeParametree.setDouble(6, b.getLongitude());
+				requeteBoueeParametree.setTimestamp(3, timestamp);
+				requeteBoueeParametree.setDouble(4, b.getLatitude());
+				requeteBoueeParametree.setDouble(5, b.getLongitude());
 
 				requeteBoueeParametree.executeUpdate();
 			} catch (SQLException e) {

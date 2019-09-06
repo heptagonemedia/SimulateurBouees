@@ -3,6 +3,8 @@ package donnee;
 import java.util.Date;
 
 public class PointDonnee {
+
+	private static int compteur = 0;
 	private Integer id_bouee;
 	private Integer no_seq;
 	private Float temperature;
@@ -11,7 +13,13 @@ public class PointDonnee {
 	private Long moment;
 	private Double longitude;
 	private Double latitude;
-	
+
+	public PointDonnee(Integer id_bouee) {
+		this.id_bouee = id_bouee;
+		compteur++;
+		this.no_seq = compteur;
+	}
+
 	public int getId_bouee() {
 		return id_bouee;
 	}

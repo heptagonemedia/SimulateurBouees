@@ -7,15 +7,14 @@
 
 CREATE TABLE public.bouees
 (
-    id bigint NOT NULL,
+    id serial primary key,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     numero integer NOT NULL,
     description character varying(100) COLLATE pg_catalog."default" NOT NULL,
     date_debut timestamp(0) without time zone NOT NULL,
     latitude numeric(10,8) NOT NULL,
-    longitude numeric(10,8) NOT NULL,
-    CONSTRAINT bouees_pkey PRIMARY KEY (id)
+    longitude numeric(10,8) NOT NULL
 )
 WITH (
     OIDS = FALSE
@@ -31,7 +30,7 @@ ALTER TABLE public.bouees
 
 CREATE TABLE public.donnee_bouees
 (
-    id bigint NOT NULL,
+    id serial primary key,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     id_bouee integer NOT NULL,
@@ -43,7 +42,6 @@ CREATE TABLE public.donnee_bouees
     latitude numeric(10,8) NOT NULL,
     longitude numeric(10,8) NOT NULL,
     batterie integer NOT NULL,
-    CONSTRAINT donnee_bouees_pkey PRIMARY KEY (id),
     CONSTRAINT donnee_bouees_id_bouee_foreign FOREIGN KEY (id_bouee)
         REFERENCES public.bouees (id) MATCH SIMPLE
         ON UPDATE NO ACTION

@@ -6,13 +6,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
-import java.util.Stack;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Bouee {
-	private Integer numero;
+	private Integer idBouee;
 	private Integer no_seq;
 	private String description;
 	private Long miseEnFonction;
@@ -27,14 +26,14 @@ public class Bouee {
 	private float[][] tabTempMinMax;
 	private BaseDeDonnees baseDeDonnees;
 	
-	public Bouee(Integer numero, String description) {
+	public Bouee(Integer idBouee, String description) {
 		generateurDeHasard = new Random();
 		
 		valeursInitiales = new ValeursInitiales();
 		
 		longitude = valeursInitiales.getLongitude();
 		latitude = valeursInitiales.getLatitude();
-		this.numero = numero;
+		this.idBouee = idBouee;
 		this.description = description;
 		miseEnFonction = new Date().getTime();
 		no_seq = 0;
@@ -66,9 +65,8 @@ public class Bouee {
 	}
 	
 	private PointDonnee genererPointDonnee() {
-		PointDonnee p = new PointDonnee();
-		
-		p.setId_bouee(numero);
+		PointDonnee p = new PointDonnee(idBouee);
+
 		p.setMoment(new Date().getTime());
 
 		//p.setTemperature(valeursInitiales.getTemperature() - 10 + (generateurDeHasard.nextFloat()*10));
@@ -79,7 +77,6 @@ public class Bouee {
 		p.setDebit(valeursInitiales.getDebit() - 1 + (generateurDeHasard.nextFloat() * 2));
 		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
-		p.setNo_seq(++no_seq);
 
 		enregistrerDonneeDansLaDB(p);
 		
@@ -87,9 +84,8 @@ public class Bouee {
 	}
 	
 	private PointDonnee genererPointDonnee(Date moment) {
-		PointDonnee p = new PointDonnee();
-		
-		p.setId_bouee(numero);
+		PointDonnee p = new PointDonnee(idBouee);
+
 		p.setMoment(moment.getTime());
 
 		//p.setTemperature(valeursInitiales.getTemperature() - 10 + (generateurDeHasard.nextFloat()*10));
@@ -99,7 +95,6 @@ public class Bouee {
 		p.setDebit(valeursInitiales.getDebit() - 1 + (generateurDeHasard.nextFloat() * 2));
 		p.setLongitude(valeursInitiales.getLongitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
-		p.setNo_seq(++no_seq);
 
 		enregistrerDonneeDansLaDB(p);
 		
@@ -120,24 +115,24 @@ public class Bouee {
 
 	public void enregistrerDonneeDansLaDB(PointDonnee p){
 
-		String queryDonnee = "INSERT INTO donnee_bouees(id, id_bouee, temperature, salinite, debit," +
-				"valide, date_temps, latitude, longitude, batterie) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String queryDonnee = "INSERT INTO donnee_bouees(id_bouee, temperature, salinite, debit," +
+				"valide, date_temps, latitude, longitude, batterie) VALUES(?,?,?,?,?,?,?,?,?)";
 
 		try{
 			PreparedStatement requeteDonneeParametree = baseDeDonnees.getConnection().prepareStatement(queryDonnee);
 
-			requeteDonneeParametree.setInt(1, p.getNo_seq());
-			requeteDonneeParametree.setInt(2, p.getId_bouee());
-			requeteDonneeParametree.setFloat(3, p.getTemperature());
-			requeteDonneeParametree.setFloat(4, p.getSalinite());
-			requeteDonneeParametree.setFloat(5, p.getDebit());
-			requeteDonneeParametree.setBoolean(6, true);
+			//requeteDonneeParametree.setInt(1, p.getNo_seq());
+			requeteDonneeParametree.setInt(1, p.getId_bouee());
+			requeteDonneeParametree.setFloat(2, p.getTemperature());
+			requeteDonneeParametree.setFloat(3, p.getSalinite());
+			requeteDonneeParametree.setFloat(4, p.getDebit());
+			requeteDonneeParametree.setBoolean(5, true);
 			java.util.Date date = new java.util.Date(p.getMoment());
 			java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
-			requeteDonneeParametree.setTimestamp(7, timestamp);
-			requeteDonneeParametree.setDouble(8, p.getLatitude());
-			requeteDonneeParametree.setDouble(9, p.getLongitude());
-			requeteDonneeParametree.setInt(10, 100);
+			requeteDonneeParametree.setTimestamp(6, timestamp);
+			requeteDonneeParametree.setDouble(7, p.getLatitude());
+			requeteDonneeParametree.setDouble(8, p.getLongitude());
+			requeteDonneeParametree.setInt(9, 100);
 
 			requeteDonneeParametree.executeUpdate();
 		} catch (SQLException e) {
@@ -187,12 +182,12 @@ public class Bouee {
 		return tab;
 	}
 
-	public Integer getNumero() {
-		return numero;
+	public Integer getIdBouee() {
+		return idBouee;
 	}
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setIdBouee(Integer idBouee) {
+		this.idBouee = idBouee;
 	}
 
 	public Integer getNo_seq() {
