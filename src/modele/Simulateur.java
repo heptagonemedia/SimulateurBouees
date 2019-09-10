@@ -24,11 +24,14 @@ public class Simulateur {
 		demarrerCollecte(1);
 	}
 	
-	public ArrayList<PointDonnee> procGenererPoints(Integer nombre) {
-		ArrayList<PointDonnee> listePointsDonneesLocale = new ArrayList<PointDonnee>();
-		for(Bouee b : listeBouees) 
+	public void procGenererPoints(Integer nombre) {
+		/*ArrayList<PointDonnee> listePointsDonneesLocale = new ArrayList<PointDonnee>();
+		for(Bouee b : listeBouees)
 			listePointsDonneesLocale.addAll(b.genererNombrePointDonnee(nombre));
-		return listePointsDonneesLocale;
+		return listePointsDonneesLocale;*/
+		for(Bouee b : listeBouees){
+		    b.fabriquerNombrePointDonnee(nombre);
+        }
 	}
 	
 	private ArrayList<Bouee> creerBouees(Integer nbrBouees) {

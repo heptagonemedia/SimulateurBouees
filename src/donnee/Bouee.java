@@ -110,10 +110,25 @@ public class Bouee {
 		ArrayList<PointDonnee> listePointDonneeLocale = new ArrayList<PointDonnee>();
 		for(int i = 0 ; i < nombre ; i++) {
 			cal.add(Calendar.SECOND, 1);
+			if(i%1000 == 0){
+			    System.out.println(nombre - i + "");
+            }
 			listePointDonneeLocale.add(this.genererPointDonnee(cal.getTime()));
 		}
 		return listePointDonneeLocale;
 	}
+
+	public void fabriquerNombrePointDonnee(Integer nombre){
+        Calendar cal = Calendar.getInstance();
+        for(int i = 0 ; i < nombre ; i++) {
+            cal.add(Calendar.SECOND, 1);
+            if(i%1000 == 0){
+                System.out.println(nombre - i + "");
+            }
+            enregistrerDonneeDansLaDB(genererPointDonnee(cal.getTime()));
+        }
+    }
+
 
 	public void enregistrerDonneeDansLaDB(PointDonnee p){
 

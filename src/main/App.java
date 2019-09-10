@@ -16,14 +16,14 @@ public class App {
 		long time1 = new Date().getTime();
 		
 		
-		controleur.genererNombrePoints(10);
+		controleur.genererNombrePoints(600000);
 		
 		long time = new Date().getTime() - time1;
 		System.out.println("Processed in " + time + "ms.");
 		
 		
 
-		controleur.demarrerCollecte();
+		//controleur.demarrerCollecte();
 
 		/*controleur.attendre(6500);
 
