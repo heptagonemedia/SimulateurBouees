@@ -25,7 +25,7 @@ public class ControlleurPrincipal {
 		//AffichageConsole.afficher(simulateur.procGenererPoints(nombre));
 		//SauvegardeFichier.sauvegarder("test", simulateur.procGenererPoints(nombre));
 		//insererBaseDonnee.inserer(simulateur.procGenererPoints(nombre));
-		enregistrerDansLaDB();
+		//enregistrerDansLaDB();
 		simulateur.procGenererPoints(nombre);
 	}
 

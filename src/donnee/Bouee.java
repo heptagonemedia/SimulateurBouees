@@ -1,5 +1,7 @@
 package donnee;
 
+import presentation.TransmissionSocket;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,6 +29,10 @@ public class Bouee {
 
 	private float[][] tabTempMinMax;
 	private BaseDeDonnees baseDeDonnees;
+
+    TransmissionSocket transmissionSocket = null;
+    String hostName = "10.1.106.12";
+    int portNumber = 1432;
 	
 	public Bouee(Integer idBouee, String description) {
 		generateurDeHasard = new Random();
@@ -99,6 +105,8 @@ public class Bouee {
 		p.setLatitude(valeursInitiales.getLatitude() + ((-0.5 + generateurDeHasard.nextFloat())/10) );
 
 		//enregistrerDonneeDansLaDB(p);
+
+		transmissionSocket.send(p.toString());
 		
 		return p;
 	}
@@ -120,13 +128,20 @@ public class Bouee {
 
 	public void fabriquerNombrePointDonnee(Integer nombre){
         Calendar cal = Calendar.getInstance();
+        transmissionSocket = new TransmissionSocket(hostName, portNumber);
+        transmissionSocket.commencerDiscussion(hostName, portNumber);
         for(int i = 0 ; i < nombre ; i++) {
             cal.add(Calendar.SECOND, 1);
             if(i%1000 == 0){
                 System.out.println(nombre - i + "");
             }
-            enregistrerDonneeDansLaDB(genererPointDonnee(cal.getTime()));
+            String hostName = "10.1.106.12";
+            int portNumber = 1432;
+
+            genererPointDonnee(cal.getTime());
+            //enregistrerDonneeDansLaDB(genererPointDonnee(cal.getTime()));
         }
+        transmissionSocket.send("\r\nEnd;");
     }
 
 
