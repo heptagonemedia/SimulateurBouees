@@ -4,6 +4,7 @@
               {modules,['Elixir.SimulateurBouees',
                         'Elixir.SimulateurBouees.Application',
                         'Elixir.SimulateurBouees.Bouee',
+                        'Elixir.SimulateurBouees.Donnee',
                         'Elixir.SimulateurBouees.Repo']},
               {registered,[]},
               {vsn,"0.1.0"},
