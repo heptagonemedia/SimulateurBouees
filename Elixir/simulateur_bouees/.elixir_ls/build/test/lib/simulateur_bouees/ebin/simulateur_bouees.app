@@ -1,0 +1,10 @@
+{application,simulateur_bouees,
+             [{applications,[kernel,stdlib,elixir,logger,postgrex,ecto_sql]},
+              {description,"simulateur_bouees"},
+              {modules,['Elixir.SimulateurBouees',
+                        'Elixir.SimulateurBouees.Application',
+                        'Elixir.SimulateurBouees.Bouee',
+                        'Elixir.SimulateurBouees.Repo']},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.SimulateurBouees.Application',[]}}]}.
